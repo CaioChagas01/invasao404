@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ET = Extra Terror</title>
+  <link rel="icon" href="imagens/favicon-cutout.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Press Start 2P', monospace;
+      background: black;
+      overflow: hidden;
+      color: #00ff00;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    .sky {
+      position: fixed; top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: black; overflow: hidden; z-index: 0;
+    }
+    .star {
+      position: absolute; width: 2px; height: 2px;
+      background: white; border-radius: 50%; opacity: 0.8;
+      animation: blink 2s infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:0.2;} 50%{opacity:1;} }
+
+    .fade { opacity: 1; animation: fadeOut 3s forwards; }
+    .fade-delay1 { animation-delay: 2s; }
+    .fade-delay2 { animation-delay: 5s; }
+    .fade-delay3 { animation-delay: 8s; }
+    .fade-delay4 { animation-delay: 11s; }
+    @keyframes fadeOut { to { opacity: 0; } }
+
+    #fimText {
+      display: none;
+      font-size: 1.5rem;
+      margin-top: 1rem;
+      color: #ff0000;
+      z-index: 10;
+    }
+
+    #fimSinal {
+      color: #ff0000;
+    }
+  </style>
+</head>
+<body>
+
+  <div class="sky" id="sky"></div>
+
+  <audio id="musica" loop>
+    <source src="sons/Going-Down.mp3" type="audio/mpeg">
+  </audio>
+
+  <button id="botaoMusica" 
+          class="fixed bottom-4 right-4 w-12 h-12 bg-black text-green-400 rounded-full flex items-center justify-center hover:opacity-70 transition shadow-lg z-20">
+    ▶️
+  </button>
+
+  <div class="relative z-10 flex flex-col items-center justify-center px-4">
+    <p class="mb-6 text-lg fade fade-delay1">Você não pode escapar do tempo</p>
+    <p class="mb-6 text-lg fade fade-delay2">Você não pode escapar da verdade</p>
+    <p class="mb-6 text-lg fade fade-delay3">Você não pode escapar de nós</p>
+    <p class="mb-6 text-lg fade fade-delay4 text-red">Esqueça tudo que leu</p>
+  </div>
+
+  <p id="fimText">Fim...<span id="fimSinal"></span></p>
+
+  <script>
+    const sky = document.getElementById("sky");
+    for (let i = 0; i < 150; i++) {
+      const star = document.createElement("div");
+      star.className = "star";
+      star.style.top = Math.random() * 100 + "vh";
+      star.style.left = Math.random() * 100 + "vw";
+      star.style.animationDuration = (1 + Math.random() * 2) + "s";
+      sky.appendChild(star);
+    }
+
+    const musica = document.getElementById("musica");
+    const botao = document.getElementById("botaoMusica");
+    botao.addEventListener("click", () => {
+      if (musica.paused) { musica.play(); botao.textContent = "⏸️"; }
+      else { musica.pause(); botao.textContent = "▶️"; }
+    });
+
+    setTimeout(() => {
+      const fimText = document.getElementById("fimText");
+      const fimSinal = document.getElementById("fimSinal");
+      fimText.style.display = "block";
+
+      setTimeout(() => { 
+        fimSinal.textContent = "?"; 
+      }, 5000);
+    }, 14000);
+  </script>
+</body>
+</html>

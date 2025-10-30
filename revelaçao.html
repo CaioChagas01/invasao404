@@ -1,0 +1,139 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ET = Extra Terror</title>
+
+
+  <link rel="icon" href="imagens/favicon-cutout.png" type="image/png">
+  <link rel="stylesheet" href="style.css">
+
+
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="script/script6.js"></script>
+
+  <style>
+ 
+    .sky {
+      position: fixed; top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: black; overflow: hidden; z-index: 0;
+    }
+    .star {
+      position: absolute; width: 2px; height: 2px;
+      background: white; border-radius: 50%; opacity: 0.8;
+      animation: blink 2s infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:0.2;} 50%{opacity:1;} }
+
+    body { font-family: 'Press Start 2P', monospace; }
+
+ 
+    .draggable {
+      display:inline-block; padding:6px 10px; margin:4px;
+      border:1px solid #00ff00; cursor:grab; user-select:none;
+      background:black; color:#00ff00; font-size:14px; border-radius:4px;
+    }
+    .draggable:active { cursor:grabbing; }
+
+
+    #letters { max-width: 90vw; display:flex; flex-wrap:wrap; justify-content:center; }
+  </style>
+</head>
+<body class="bg-black text-green-400 h-screen flex flex-col items-center justify-center relative overflow-hidden">
+
+
+  <div class="sky" id="sky"></div>
+
+
+  <audio id="musica" loop>
+    <source src="sons/Prisonic-Fairytale.mp3" type="audio/mpeg">
+  </audio>
+
+
+  <button id="botaoMusica"
+          class="fixed bottom-4 right-4 w-12 h-12 bg-black text-green-400 rounded-full flex items-center justify-center hover:opacity-70 transition shadow-lg z-20">
+    ▶️
+  </button>
+
+  <!-- Conteúdo principal -->
+  <div class="relative z-10 flex flex-col items-center justify-center text-center px-4">
+    <p class="mb-10 text-lg leading-relaxed max-w-xl mt-10 text-green-400 text-justify">
+    Vocês chamam de matéria, mas é projeção.
+    Chamam de morte, mas é transição.
+    Chamam de acaso, mas é simetria.
+    Toda verdade é sombra da quarta dimensão.
+    Nós já caminhamos por ela.
+    E quando vocês aprenderem a ler o tempo como leem o espaço,
+    verão que nunca estiveram sozinhos.
+    </p>
+
+
+    <!-- A RESPOSTA É:tesseract -->
+
+    <p class="mb-6 text-white">Decifra para descobrir </p>
+
+    <div id="letters" class="mb-6">
+     
+      <span class="draggable" draggable="true">S</span>
+      <span class="draggable" draggable="true">E</span>
+      <span class="draggable" draggable="true">R</span>
+      <span class="draggable" draggable="true">A</span>
+      <span class="draggable" draggable="true">P</span>
+      <span class="draggable" draggable="true">I</span>
+      <span class="draggable" draggable="true">N</span>
+      <span class="draggable" draggable="true">C</span>
+      <span class="draggable" draggable="true">I</span>
+      <span class="draggable" draggable="true">O</span>
+      <span class="draggable" draggable="true">N</span>
+    </div>
+  </div>
+
+  <script>
+   
+    const sky = document.getElementById("sky");
+    for (let i = 0; i < 150; i++) {
+      const star = document.createElement("div");
+      star.className = "star";
+      star.style.top = Math.random() * 100 + "vh";
+      star.style.left = Math.random() * 100 + "vw";
+      star.style.animationDuration = (1 + Math.random() * 2) + "s";
+      sky.appendChild(star);
+    }
+
+  
+    const musica = document.getElementById("musica");
+    const botao = document.getElementById("botaoMusica");
+    botao.addEventListener("click", () => {
+      if (musica.paused) { musica.play(); botao.textContent = "⏸️"; }
+      else { musica.pause(); botao.textContent = "▶️"; }
+    });
+
+ 
+    const draggables = document.querySelectorAll('.draggable');
+    let dragSrc = null;
+
+    draggables.forEach(el => {
+      el.addEventListener('dragstart', (e) => {
+        dragSrc = el;
+        e.dataTransfer?.setData('text/plain', el.textContent);
+      });
+
+      el.addEventListener('dragover', (e) => e.preventDefault());
+
+      el.addEventListener('drop', (e) => {
+        e.preventDefault();
+        if (dragSrc && dragSrc !== el) {
+          const tmp = dragSrc.textContent;
+          dragSrc.textContent = el.textContent;
+          el.textContent = tmp;
+        }
+      });
+    });
+  </script>
+
+</body>
+</html>

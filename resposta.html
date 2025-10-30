@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ET = Extra Terror</title>
+
+  <link rel="icon" href="imagens/favicon-cutout.png" type="image/png">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="script/script5.js"></script>
+
+  <style>
+    body {
+      font-family: 'Press Start 2P', monospace;
+    }
+    .sky {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: black;
+      overflow: hidden;
+      z-index: 0;
+    }
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: blink 2s infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+  </style>
+</head>
+
+<body class="bg-black text-green-400 h-screen flex flex-col items-center justify-center relative overflow-hidden">
+
+  <div class="sky" id="sky"></div>
+
+  <audio id="musica" loop>
+    <source src="sons/Sounds-from-the-end-of-the-world┃Full-Album (1).mp3" type="audio/mpeg">
+  </audio>
+
+  <button id="botaoMusica" 
+          class="fixed bottom-4 right-4 w-12 h-12 bg-black text-green-400 rounded-full flex items-center justify-center hover:opacity-70 transition shadow-lg z-20">
+    ▶️
+  </button>
+
+  <div class="relative z-10 flex flex-col items-center justify-center text-center px-4">
+    <p class="mb-10 text-lg leading-relaxed max-w-xl mt-10 text-green-400 text-justify">
+      "Vocês caminham pelo tempo como por um corredor.<br>
+      Nós o atravessamos como quem dobra um mapa.<br>
+      As datas são portais.<br>
+    </p>
+
+    <p class="mb-20 text-lg leading-relaxed max-w-xl text-red-500 text-center tracking-wider">
+      16/10/2025<br>
+      15/10/2025<br>
+      18/10/2025<br>
+      20/10/2025<br>
+      01/10/2025
+    </p>
+  </div>
+
+  <script>
+    const sky = document.getElementById("sky");
+    for (let i = 0; i < 150; i++) {
+      const star = document.createElement("div");
+      star.className = "star";
+      star.style.top = Math.random() * 100 + "vh";
+      star.style.left = Math.random() * 100 + "vw";
+      star.style.animationDuration = (1 + Math.random() * 2) + "s";
+      sky.appendChild(star);
+    }
+
+    const musica = document.getElementById("musica");
+    const botao = document.getElementById("botaoMusica");
+
+    botao.addEventListener("click", () => {
+      if (musica.paused) {
+        musica.play();
+        botao.textContent = "⏸️";
+      } else {
+        musica.pause();
+        botao.textContent = "▶️";
+      }
+    });
+  </script>  
+
+</body>
+</html>

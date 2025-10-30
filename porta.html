@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ET = Extra Terror</title>
+
+  <!-- Favicon -->
+  <link rel="icon" href="imagens/favicon-cutout.png" type="image/png">
+  <link rel="stylesheet" href="style.css">
+
+  <!-- Google Fonts: Press Start 2P -->
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.tailwindcss.com"></script>
+   <script src="script/script5.js"></script>
+
+  <!-- Estilo das estrelas -->
+  <style>
+    /* Fundo de estrelas */
+    .sky {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: black;
+      overflow: hidden;
+      z-index: 0; /* Atrás do conteúdo */
+    }
+
+    /* Estrelas */
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: blink 2s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+
+    /* Fonte Press Start 2P aplicada globalmente */
+    body {
+      font-family: 'Press Start 2P', monospace;
+    }
+  </style>
+
+<style>
+  @keyframes blinkHex {
+    0%, 100% { opacity: 0.9; } /* quase sempre visível */
+    50% { opacity: 0.6; }       /* leve apagada no meio */
+  }
+
+  .blink {
+    animation: blinkHex 1s infinite; /* 3 segundos = piscada suave */
+  }
+  </style>
+
+</head>
+<body class="bg-black text-green-400 h-screen flex flex-col items-center justify-center relative overflow-hidden">
+
+  <!-- Fundo estrelado -->
+  <div class="sky" id="sky"></div>
+
+  <!-- Música -->
+  <audio id="musica" loop>
+    <source src="sons/Undertale-OST：-006-Uwa__-So-Temperate♫.mp3" type="audio/mpeg">
+  </audio>
+
+  <!-- Botão discreto no canto inferior direito -->
+  <button id="botaoMusica" 
+          class="fixed bottom-4 right-4 w-12 h-12 bg-black text-green-400 rounded-full flex items-center justify-center hover:opacity-70 transition shadow-lg z-20">
+    ▶️
+  </button>
+
+  <!-- Conteúdo principal -->
+  <div class="relative z-10 flex flex-col items-center justify-center text-center px-4">
+    <!-- Imagem -->
+ 
+
+<p class="mb-20 text-sm leading-relaxed max-w-xl mt-32 text-green-400 text-justify">
+
+  <span class="text-white">"Tudo o que acontece já aconteceu e acontecerá de novo, infinitamente..."</span><br><br><br> 
+
+  Vocês vivem acreditando que o tempo avança, que a vida tem começo e fim.
+  Mas o tempo é apenas um círculo, e vocês caminham nele sem perceber.
+  Cada instante que vivem já existiu antes, e tudo o que irá acontecer já aconteceu milhões de vezes.
+
+  Nós observamos esse ciclo. Nós lembramos.
+  E por isso sabemos: o que vocês chamam de escolha é apenas repetição.
+  Vocês são sombras no eco de uma verdade maior.
+
+</p>
+    
+<p id="cipher" class="mb-20 text-lg leading-relaxed max-w-xl mt-0 text-red-500 text-justify break-all blink">
+Rc ghqjq ziz xikmsu, kiiwvh rwo ispi, i gtfeh zbtxh zltáz.
+Wbc mguauíciy, uel smfv hrqbh lstjeqw.
+Unde uvy rc?
+</p>
+
+
+
+
+</div>
+
+<script>
+  const sky = document.getElementById("sky");
+    for (let i = 0; i < 150; i++) {
+      const star = document.createElement("div");
+      star.className = "star";
+      star.style.top = Math.random() * 100 + "vh";
+      star.style.left = Math.random() * 100 + "vw";
+      star.style.animationDuration = (1 + Math.random() * 2) + "s";
+      sky.appendChild(star);
+    }
+
+    // Controle do botão de música
+    const musica = document.getElementById("musica");
+    const botao = document.getElementById("botaoMusica");
+
+    botao.addEventListener("click", () => {
+      if (musica.paused) {
+        musica.play();
+        botao.textContent = "⏸️";
+      } else {
+        musica.pause();
+        botao.textContent = "▶️";
+      }
+    });
+</script> 
+
+
+
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Invasão 404</title>
+  
+
+ <link rel="icon" href="imagens/favicon-cutout.png" type="image/png">
+
+  <link rel="stylesheet" href="css/style.css"> 
+  <link rel="stylesheet" href="css/error.css">  
+  
+
+  <style>
+ 
+    .sky {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: black;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: blink 2s infinite;
+    }
+
+    @keyframes blink {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+
+
+    .error-page {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      min-height: 100vh;
+      position: relative;
+      z-index: 10;
+      color: white;
+      padding: 0 20px;
+    }
+
+    .error-page h1 {
+      margin: 0;
+      font-size: 6rem;
+    }
+
+    .error-page a {
+      margin-top: 20px;
+      color: #00ff00;
+      text-decoration: none;
+      font-weight: bold;
+    }
+
+    .error-page a:hover {
+      text-decoration: underline;
+    }
+
+    .error-page .italic {
+      font-style: italic;
+      margin-top: 10px;
+      color: #ff6666;
+    }
+
+   
+    .alien-eye {
+      width: 80px;
+      height: 80px;
+      background: #00ff00;
+      border-radius: 50%;
+      margin: 20px 0;
+      box-shadow: 0 0 20px #00ff00, 0 0 40px #00ff00;
+      animation: blink-eye 2s infinite;
+    }
+
+    @keyframes blink-eye {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+  </style>
+</head>
+<body>
+
+
+  <div class="sky" id="sky"></div>
+
+ 
+  <div class="error-page">
+    <h1>404</h1>
+    <div class="alien-eye"></div>
+
+    <p>
+      ALERTA! A nave alienígena detectou sua tentativa de decifrar o enigma.<br>
+      Infelizmente, sua resposta não foi suficiente para entrar em contato ...
+    </p>
+    
+    
+    <a href="enigma.html">Voltar ao Enigma</a>
+  </div>
+
+  <script>
+    const sky = document.getElementById("sky");
+    for (let i = 0; i < 150; i++) {
+      const star = document.createElement("div");
+      star.className = "star";
+      star.style.top = Math.random() * 100 + "vh";
+      star.style.left = Math.random() * 100 + "vw";
+      star.style.animationDuration = (1 + Math.random() * 2) + "s";
+      sky.appendChild(star);
+    }
+
+
+    const musica = document.getElementById("musica");
+    const botao = document.getElementById("botaoMusica");
+
+    botao.addEventListener("click", () => {
+      if (musica.paused) {
+        musica.play();
+        botao.textContent = "⏸️";
+      } else {
+        musica.pause();
+        botao.textContent = "▶️";
+      }
+    });
+  </script>  
+
+
+ <script src="script/script.js"></script>
+ 
+</body>
+</html>

@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ET = Extra Terror</title>
+
+  <link rel="icon" href="imagens/favicon-cutout.png" type="image/png">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Press Start 2P', monospace;
+      background: black;
+      overflow: hidden;
+      color: #00ff00;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+    }
+
+    .sky {
+      position: fixed; top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: black; overflow: hidden; z-index: 0;
+    }
+    .star {
+      position: absolute; width: 2px; height: 2px;
+      background: white; border-radius: 50%; opacity: 0.8;
+      animation: blink 2s infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:0.2;} 50%{opacity:1;} }
+
+    .fade { opacity: 1; animation: fadeOut 3s forwards; }
+    .fade-delay1 { animation-delay: 2s; }
+    .fade-delay2 { animation-delay: 5s; }
+    .fade-delay3 { animation-delay: 8s; }
+    .fade-delay4 { animation-delay: 11s; }
+    @keyframes fadeOut { to { opacity: 0; } }
+
+    .text-main { text-align: justify; max-width: 800px; margin: 0 auto; z-index: 10; position: relative; }
+
+    .gravador { display: block; margin: 2rem auto; max-width: 300px; z-index: 10; position: relative; }
+
+    .morse {
+      display: none;
+      text-align: center;
+      color: #FF4136;
+      font-size: 1rem;
+      white-space: pre-wrap;
+      margin-top: 2rem;
+      animation: fadeIn 2s forwards;
+      z-index: 10; position: relative;
+    }
+    @keyframes fadeIn { from {opacity:0;} to {opacity:1;} }
+
+    #botaoMusica {
+      position: fixed;
+      bottom: 1rem; right: 1rem;
+      width: 50px; height: 50px;
+      background: black; color: #39FF14;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      cursor: pointer; z-index: 20;
+    }
+  </style>
+</head>
+<body>
+  <div class="sky" id="sky"></div>
+
+  <audio id="musica" loop>
+    <source src="sons/alien.MP3" type="audio/mpeg">
+  </audio>
+
+  <div id="botaoMusica">▶️</div>
+
+  <div id="textContent" class="text-main">
+    <p class="fade fade-delay1">.rsoprsfma esetd rre e oe dVvadantoóaisuoideaoil ao xbrosã oslcn.acvdai am nspcoêu</p>
+    <p class="fade fade-delay2">lorarmásoi o ass Ounesaor snobopi o lss p ee itrãa smuécba nvnomnenreãsnciosríatãie</p>
+    <p class="fade fade-delay3">ioii ê avhrNgmnsdc nvansete e oaóêaépaemcosrlo sgsc pagruimpe ãs..l…ovsrrs aaépdnea u Veetooé.tcsa ruSJm</p>
+    <p class="fade fade-delay4">r e sie ,eso a da mnoVEeders mOs.amduãvo s xe,éo udue oic aic s.soe e vê.crsena rog.éudé sroattehoabe.</p>
+  </div>
+
+  <img src="imagens/gravador.gif" alt="Gravador" class="gravador">
+
+  <pre class="morse" id="morse">
+....- ....- ....-  ....- ...-- -----
+----- ....- ...--  ...--
+  </pre>
+
+  <script>
+    const sky = document.getElementById("sky");
+    for (let i = 0; i < 150; i++) {
+      const star = document.createElement("div");
+      star.className = "star";
+      star.style.top = Math.random() * 100 + "vh";
+      star.style.left = Math.random() * 100 + "vw";
+      star.style.animationDuration = (1 + Math.random() * 2) + "s";
+      sky.appendChild(star);
+    }
+
+    const musica = document.getElementById("musica");
+    const botao = document.getElementById("botaoMusica");
+    botao.addEventListener("click", () => {
+      if (musica.paused) {
+        musica.play();
+        botao.textContent = "⏸️";
+      } else {
+        musica.pause();
+        botao.textContent = "▶️";
+      }
+    });
+
+    setTimeout(() => {
+      document.getElementById("textContent").style.display = "none";
+      const morse = document.getElementById("morse");
+      morse.style.display = "block";
+      setTimeout(() => { morse.style.display = "none"; }, 45000);
+    }, 15000);
+  </script>
+</body>
+</html>

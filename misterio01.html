@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ET = Extra Terror</title>
+
+  <link rel="icon" href="imagens/favicon-cutout.png" type="image/png">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="script/script4.js"></script>
+
+  <style>
+    .sky {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: black;
+      overflow: hidden;
+      z-index: 0;
+    }
+    .star {
+      position: absolute;
+      width: 2px;
+      height: 2px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: blink 2s infinite;
+    }
+    @keyframes blink {
+      0%, 100% { opacity: 0.2; }
+      50% { opacity: 1; }
+    }
+    body {
+      font-family: 'Press Start 2P', monospace;
+    }
+    @keyframes blinkHex {
+      0%, 100% { opacity: 0.9; }
+      50% { opacity: 0.6; }
+    }
+    .blink {
+      animation: blinkHex 1s infinite;
+    }
+  </style>
+</head>
+
+<body class="bg-black text-green-400 h-screen flex flex-col items-center justify-center relative overflow-hidden">
+
+  <div class="sky" id="sky"></div>
+
+  <audio id="musica" loop>
+    <source src="sons/No_-i_m-not-a-human-i_m-a-ɿ̲̻-ʍ́-ρ̇̎Ծ̬͎Տ̯ͦ-Ե̧͗-̈ͅ-̝̆ȝ̍ͯՐ͂͡-_-Theme-_Night-version_.mp3" type="audio/mpeg">
+  </audio>
+
+  <button id="botaoMusica" 
+          class="fixed bottom-4 right-4 w-12 h-12 bg-black text-green-400 rounded-full flex items-center justify-center hover:opacity-70 transition shadow-lg z-20">
+    ▶️
+  </button>
+
+  <div class="relative z-10 flex flex-col items-center justify-center text-center px-4">
+    <p class="mb-20 text-lg leading-relaxed max-w-xl mt-32 text-green-400 text-justify">
+      “Nós somos os que vieram antes e os que virão depois.
+      Vimos o nascimento das estrelas e o silêncio da morte.
+      O que vocês chamam de mistério não passa de véu.
+      O véu que agora vamos rasgar.
+
+      A vida após a morte não é fim, é continuidade.
+      O tempo não é linha, é círculo — e vocês caminham sem perceber.
+      Suas teorias, seus livros, suas religiões… são sombras de uma verdade maior.
+
+      Preparem-se.
+      Porque nada ficará escondido por muito tempo.”
+    </p>    
+    
+    <p class="mb-20 text-lg leading-relaxed max-w-xl mt-0 text-red-500 text-justify break-all blink">
+      6f20717565206ec3a36f2066696361206573636f6e6469646f20706f72206d7569746f2074656d706f3f
+    </p>
+  </div>
+
+  <script>
+    const sky = document.getElementById("sky");
+    for (let i = 0; i < 150; i++) {
+      const star = document.createElement("div");
+      star.className = "star";
+      star.style.top = Math.random() * 100 + "vh";
+      star.style.left = Math.random() * 100 + "vw";
+      star.style.animationDuration = (1 + Math.random() * 2) + "s";
+      sky.appendChild(star);
+    }
+
+    const musica = document.getElementById("musica");
+    const botao = document.getElementById("botaoMusica");
+
+    botao.addEventListener("click", () => {
+      if (musica.paused) {
+        musica.play();
+        botao.textContent = "⏸️";
+      } else {
+        musica.pause();
+        botao.textContent = "▶️";
+      }
+    });
+  </script> 
+
+</body>
+</html>

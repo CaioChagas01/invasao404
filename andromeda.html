@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ET = Extra Terror</title>
+  <link rel="icon" href="imagens/favicon-cutout.png" type="image/png">
+  <link rel="stylesheet" href="css/style.css">
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="script/script2.js"></script>
+</head>
+<body>
+
+  <div class="sky" id="sky"></div>
+  <div style="height: 150px;"></div>
+
+  <audio id="musica" loop>
+    <source src="sons/yume-nikki-ost-dark-world-extended.mp3" type="audio/mpeg">
+  </audio>
+
+  <div id="botaoMusica">▶️</div>
+
+  <img src="imagens/andromeda.png" alt="Andrômeda" class="img-main" width="280">
+
+  <div class="texto-enigma">
+    <p>"No véu da noite eu nasço, Três irmãs caminham juntas, como se desenhassem <span class="censurado">E</span>nigmas antigos,</p>
+    <p>Seus passos traçam linhas que tocam a <span class="censurado">G</span>ranítica memória de reis adormecidos.</p>
+    <p>Onde elas olham, o céu e a terra se encontram, revelando o <span class="censurado">I</span>mpério oculto de civilizações perdidas.</p>
+    <p>O sussurro do deserto lembra as pirâmides da <span class="censurado">T</span>erra do rei Faraó,</p>
+    <p>Que segredo guardam suas mãos alinhadas, onde a história d <span class="censurado">O</span> Império se esconde?"</p>
+  </div>
+
+  <script>
+    const sky = document.getElementById("sky");
+    for (let i = 0; i < 150; i++) {
+      const star = document.createElement("div");
+      star.className = "star";
+      star.style.top = Math.random() * 100 + "vh";
+      star.style.left = Math.random() * 100 + "vw";
+      star.style.animationDuration = (1 + Math.random() * 2) + "s";
+      sky.appendChild(star);
+    }
+
+    const musica = document.getElementById("musica");
+    const botao = document.getElementById("botaoMusica");
+
+    botao.addEventListener("click", () => {
+      if (musica.paused) {
+        musica.play();
+        botao.textContent = "⏸️";
+      } else {
+        musica.pause();
+        botao.textContent = "▶️";
+      }
+    });
+  </script>
+
+</body>
+</html>

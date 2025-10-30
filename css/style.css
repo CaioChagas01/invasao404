@@ -1,0 +1,102 @@
+/* Importa a fonte pixelada */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+/* Fundo preto e corpo */
+body {
+  background: black;
+  margin: 0;
+  overflow: hidden;
+  overflow: auto;
+  font-family: 'Press Start 2P', monospace;
+  font-size: 12px;
+  color: green;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+/* Fundo estrelado */
+.sky {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+}
+
+/* Estrelas */
+.star {
+  position: absolute;
+  background: white;
+  border-radius: 50%;
+  box-shadow: 0 0 6px rgba(255,255,255,0.8);
+  opacity: 0.9;
+  width: var(--size, 2px);
+  height: var(--size, 2px);
+  animation: twinkle var(--dur, 3s) infinite ease-in-out;
+  animation-delay: var(--delay, 0s);
+}
+
+@keyframes twinkle {
+  0%   { opacity: 0.2; transform: scale(1); }
+  50%  { opacity: 1; transform: scale(1.5); }
+  100% { opacity: 0.2; transform: scale(1); }
+}
+
+/* Texto do enigma */
+.texto-enigma {
+  position: relative;
+  z-index: 10;
+  max-width: 600px;
+  margin: 0 auto;
+  line-height: 1.8rem;
+  text-align: justify;
+  text-justify: inter-word;
+  color: #00ff00; /* verde neon */
+  font-size: 15px; /* aumenta o tamanho do texto */
+  padding-bottom: 5vh; /* 10% da altura da tela */
+
+}
+
+/* Letras censuradas */
+.censurado {
+  color: transparent;
+  font-weight: bold;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.censurado:hover {
+  color: red; /* aparece vermelho ao passar o mouse */
+}
+
+/* Imagem principal */
+.img-main {
+  z-index: 5;
+  margin-bottom: 10px;
+  margin-top: -50px; /* valor negativo sobe a imagem */
+}
+
+/* Botão de música */
+#botaoMusica {
+  position: fixed;
+  bottom: 16px;
+  right: 16px;
+  width: 48px;
+  height: 48px;
+  background: black;
+  color: green;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  cursor: pointer;
+  transition: opacity 0.3s ease;
+}
+
+#botaoMusica:hover {
+  opacity: 0.7;
+}
+
+

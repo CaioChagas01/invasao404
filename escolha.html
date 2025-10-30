@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>ET = Extra Terror</title>
+
+  <link rel="icon" href="imagens/favicon-cutout.png" type="image/png">
+  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Press Start 2P', monospace;
+      background: black;
+      overflow: hidden;
+      color: #00ff00;
+    }
+
+    .sky {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100vw; height: 100vh;
+      background: black;
+      overflow: hidden;
+      z-index: 0;
+    }
+
+    .star {
+      position: absolute;
+      width: 2px; height: 2px;
+      background: white;
+      border-radius: 50%;
+      opacity: 0.8;
+      animation: blink 2s infinite;
+    }
+
+    @keyframes blink { 
+      0%,100% { opacity:0.2; } 
+      50% { opacity:1; } 
+    }
+
+    .alien-container {
+      position: relative;
+      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      height: 100vh;
+      text-align: center;
+    }
+
+    .alien {
+      width: 80vh;
+      margin-bottom: 0;
+      filter: drop-shadow(0 0 15px lime);
+    }
+
+    .pills {
+      position: absolute;
+      bottom: 30%;
+      display: flex;
+      gap: 160px;
+      justify-content: center;
+      width: 100%;
+    }
+
+    .pill {
+      padding: 8px 20px;
+      border-radius: 50px;
+      font-size: 10px;
+      font-weight: bold;
+      color: white;
+      cursor: pointer;
+      transition: transform 0.2s ease, box-shadow 0.3s ease;
+    }
+
+    .pill-red {
+      background: linear-gradient(145deg, #ff0000, #990000);
+      box-shadow: 0 0 15px #ff0000;
+    }
+
+    .pill-red:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 25px #ff3333;
+    }
+
+    .pill-blue {
+      background: linear-gradient(145deg, #0080ff, #001f80);
+      box-shadow: 0 0 15px #0080ff;
+    }
+
+    .pill-blue:hover {
+      transform: scale(1.1);
+      box-shadow: 0 0 25px #3399ff;
+    }
+  </style>
+</head>
+<body>
+  <div class="sky" id="sky"></div>
+
+  <audio id="musica" loop>
+    <source src="sons/Hans-Zimmer-S.T.A.Y-_Interstellar-Main-Theme__slowed-reverb_.publer.com.mp3" type="audio/mpeg">
+  </audio>
+
+  <button id="botaoMusica"
+          class="fixed bottom-4 right-4 w-12 h-12 bg-black text-green-400 rounded-full flex items-center justify-center hover:opacity-70 transition shadow-lg z-20">
+    ▶️
+  </button>
+
+  <p class="fixed top-64 left-4 text-xs text-green-400 z-20">
+    A <span class="text-blue-400 font-bold">pílula Azul</span> fará você continuar na ilusão <br>
+    A <span class="text-red-400 font-bold">pílula Vermelha</span> dirá a verdade <br>
+    Qual você irá escolher?
+  </p>
+
+  <div class="alien-container">
+    <img src="imagens/alien.png" alt="Alien segurando pílulas" class="alien">
+    <div class="pills">
+        <a href="verdade.html" class="pill pill-red">Pílula Vermelha</a>
+        <a href="ilusao.html" class="pill pill-blue">Pílula Azul</a>
+    </div>
+  </div>
+
+  <script>
+    const sky = document.getElementById("sky");
+    for (let i = 0; i < 150; i++) {
+      const star = document.createElement("div");
+      star.className = "star";
+      star.style.top = Math.random() * 100 + "vh";
+      star.style.left = Math.random() * 100 + "vw";
+      star.style.animationDuration = (1 + Math.random() * 2) + "s";
+      sky.appendChild(star);
+    }
+
+    const musica = document.getElementById("musica");
+    const botao = document.getElementById("botaoMusica");
+    botao.addEventListener("click", () => {
+      if (musica.paused) { musica.play(); botao.textContent = "⏸️"; }
+      else { musica.pause(); botao.textContent = "▶️"; }
+    });
+  </script>
+</body>
+</html>
